@@ -13,9 +13,11 @@ export default function () {
         let fieldName = rangefield.getAttribute('data-settings');
         let input = document.body.querySelectorAll(`input[name=${fieldName}]`)[0];
         let settings = window[fieldName];
-        if (input.hasAttribute('value') && values.length === settings['start'].length) {
+        if (input.hasAttribute('value')) {
           let values = input.getAttribute('value').split(',');
-          settings['start'] = values;
+          if (values.length === settings['start'].length) {
+            settings['start'] = values;
+          }
         }
         noUiSlider.create(rangefield, settings);
 
