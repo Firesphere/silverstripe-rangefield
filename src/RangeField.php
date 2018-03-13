@@ -160,11 +160,11 @@ class RangeField extends FormField
     }
 
     /**
-     * @param int|array $min
+     * @param int $min
      */
     public function setMin($min)
     {
-        $this->min = (array)$min;
+        $this->min = $min;
     }
 
     /**

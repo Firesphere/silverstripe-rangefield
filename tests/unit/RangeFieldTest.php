@@ -91,7 +91,7 @@ class RangeFieldTest extends SapphireTest
         
         $field->setMin(10);
         
-        $this->assertEquals([10], $field->getMin());
+        $this->assertEquals(10, $field->getMin());
     }
 
     public function testGetSetMax()
