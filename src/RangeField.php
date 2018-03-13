@@ -8,6 +8,9 @@ use SilverStripe\View\Requirements;
 
 /**
  * Class RangeField
+ *
+ * A rangefield gives the user the option to select a value from a range, or set a range
+ * @todo support for multiple handles, it seems not to work
  * @package Firesphere\Rangefield\Forms
  */
 class RangeField extends FormField
@@ -47,6 +50,11 @@ class RangeField extends FormField
      * @var bool
      */
     protected $showPips = true;
+
+    /**
+     * @var int|bool
+     */
+    protected $step = false;
 
     /**
      * RangeField constructor.
@@ -101,10 +109,12 @@ class RangeField extends FormField
             ];
         }
 
-        if (count($this->range)) {
+        if ($this->getStep() !== false) {
+            $data['step'] = $this->getStep();
+        }
+
+        if (count($this->range)) { // Update the range if we've gotten a forced range
             $data['range'] = $this->range;
-            $data['snap'] = true;
-            $this->setSnap(true);
         }
 
         $this->setData($data);
@@ -230,4 +240,21 @@ class RangeField extends FormField
     {
         $this->showPips = $showPips;
     }
+
+    /**
+     * @return int
+     */
+    public function getStep()
+    {
+        return $this->step;
+    }
+
+    /**
+     * @param int $step
+     */
+    public function setStep($step)
+    {
+        $this->step = $step;
+    }
+
 }
