@@ -23,7 +23,7 @@ class RangeField extends FormField
 
 
     /**
-     * @var array
+     * @var int
      */
     protected $min = 0;
 

@@ -50,6 +50,41 @@ class RangeFieldTest extends SapphireTest
         $this->assertEquals($expected, $rangeField->getData());
     }
 
+    public function testSnap()
+    {
+        $rangeField = RangeField::create(
+            'TestInt',
+            'Test',
+            50,
+            25,
+            75,
+            ['min' => 25, '17%' => 33, '50%' => 50, '83%' => 66, 'max' => 75]
+        );
+
+        $rangeField->setSnap(true);
+
+        $rangeField->Field([]);
+
+        $expected = [
+            'start' => [50],
+            'snap'  => true,
+            'range' => [
+                'min' => 25,
+                '17%' => 33,
+                '50%' => 50,
+                '83%' => 66,
+                'max' => 75
+            ],
+            'pips'  => [  // Show a scale with the slider
+                'mode'    => 'steps',
+                'stepped' => true,
+                'density' => 4
+            ]
+        ];
+
+        $this->assertEquals($expected, $rangeField->getData());
+    }
+
     public function testGetSetMin()
     {
         $field = RangeField::create('Test', 'Test');
@@ -111,6 +146,17 @@ class RangeFieldTest extends SapphireTest
         $field->setShowPips(false);
         
         $this->assertFalse($field->isShowPips());
+    }
+
+    public function testIsSetSnap()
+    {
+        $field = RangeField::create('Test', 'Test');
+
+        $this->assertTrue($field->isSnap());
+
+        $field->setSnap(false);
+        
+        $this->assertFalse($field->isSnap());
     }
 
     public function testGetSetStart()
