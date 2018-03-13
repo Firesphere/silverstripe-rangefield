@@ -152,11 +152,11 @@ class RangeFieldTest extends SapphireTest
     {
         $field = RangeField::create('Test', 'Test');
 
-        $this->assertTrue($field->isSnap());
-
-        $field->setSnap(false);
-        
         $this->assertFalse($field->isSnap());
+
+        $field->setSnap(true);
+        
+        $this->assertTrue($field->isSnap());
     }
 
     public function testGetSetStart()
