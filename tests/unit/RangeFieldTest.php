@@ -10,8 +10,8 @@ class RangeFieldTest extends SapphireTest
     public function testDefault()
     {
         $field = RangeField::create('Test', 'Test');
-        $this->assertEquals(0, $field->getMin());
-        $this->assertEquals(100, $field->getMax());
+        $this->assertEquals([0], $field->getMin());
+        $this->assertEquals([100], $field->getMax());
         $this->assertFalse($field->isSnap());
         $this->assertEquals([], $field->getRange());
     }

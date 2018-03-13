@@ -39,6 +39,16 @@ class RangeField extends FormField
     protected $data = [];
 
     /**
+     * @var int
+     */
+    protected $density = 4;
+
+    /**
+     * @var bool
+     */
+    protected $showPips = true;
+
+    /**
      * RangeField constructor.
      * @param string $name The internal field name, passed to forms.
      * @param null|string $title The human-readable field label.
@@ -65,6 +75,10 @@ class RangeField extends FormField
         parent::__construct($name, $title, $value);
     }
 
+    /**
+     * @param array $properties
+     * @return \SilverStripe\ORM\FieldType\DBHTMLText
+     */
     public function Field($properties = array())
     {
         Requirements::set_force_js_to_bottom(true);
@@ -77,13 +91,15 @@ class RangeField extends FormField
             'range' => [
                 'min' => min($this->min),
                 'max' => max($this->max)
-            ],
-            'pips'  => [  // Show a scale with the slider
-                'mode'    => 'steps',
-                'stepped' => true,
-                'density' => 0
             ]
         ];
+        if ($this->showPips) {
+            $data['pips']  = [  // Show a scale with the slider
+                'mode'    => 'steps',
+                'stepped' => true,
+                'density' => $this->density
+            ];
+        }
 
         if (count($this->range)) {
             $data['range'] = $this->range;
@@ -91,9 +107,10 @@ class RangeField extends FormField
             $this->setSnap(true);
         }
 
+        $this->setData($data);
+
         $field = parent::Field($properties);
 
-        $this->setData($data);
 
         Requirements::insertHeadTags("<script type='text/javascript'>
         var $this->name = " . Convert::array2json($data) . '</script>');
@@ -179,5 +196,38 @@ class RangeField extends FormField
     public function setData($data)
     {
         $this->data = $data;
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getDensity()
+    {
+        return $this->density;
+    }
+
+    /**
+     * @param int $density
+     */
+    public function setDensity($density)
+    {
+        $this->density = $density;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isShowPips()
+    {
+        return $this->showPips;
+    }
+
+    /**
+     * @param bool $showPips
+     */
+    public function setShowPips($showPips)
+    {
+        $this->showPips = $showPips;
     }
 }
