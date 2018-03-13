@@ -24,6 +24,9 @@
       "1.x-dev": "1.0.x-dev",
       "dev-master": "1.x-dev"
     },
+    "expose": [
+      "client/dist"
+    ],
     "autoload-dev": {
       "psr-4": {
         "Firesphere\\RangeField": "src"
