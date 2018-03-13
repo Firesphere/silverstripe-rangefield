@@ -93,7 +93,7 @@ class RangeField extends FormField
      * @param array $properties
      * @return \SilverStripe\ORM\FieldType\DBHTMLText
      */
-    public function Field($properties = array())
+    public function field($properties = array())
     {
         Requirements::set_force_js_to_bottom(true);
         Requirements::javascript('firesphere/rangefield:client/dist/main.js');
