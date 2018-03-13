@@ -99,33 +99,7 @@ class RangeField extends FormField
         Requirements::javascript('firesphere/rangefield:client/dist/main.js');
         Requirements::css('firesphere/rangefield:client/dist/main.css');
 
-        $data = [
-            'start'             => $this->start,
-            'snap'              => $this->snap,
-            'animate'           => true,
-            'animationDuration' => 300,
-            'range'             => [
-                'min' => $this->min,
-                'max' => $this->max
-            ]
-        ];
-        if ($this->showPips) {
-            $data['pips'] = [  // Show a scale with the slider
-                'mode'    => 'steps',
-                'stepped' => true,
-                'density' => $this->density
-            ];
-        }
-
-        if ($this->getStep()) {
-            $data['step'] = $this->getStep();
-        }
-
-        if (count($this->range)) { // Update the range if we've gotten a forced range
-            $data['range'] = array_merge($data['range'], $this->range);
-        }
-
-        $this->setData($data);
+        $this->setupData();
 
         $field = parent::Field($properties);
 
@@ -135,6 +109,38 @@ class RangeField extends FormField
         var $this->name = " . Convert::array2json($this->getData()) . '</script>');
 
         return $field;
+    }
+
+
+    protected function setupData()
+    {
+        $data = [
+            'start'             => $this->getStart(),
+            'snap'              => $this->isSnap(),
+            'animate'           => true,
+            'animationDuration' => 300,
+            'range'             => [
+                'min' => $this->getMin(),
+                'max' => $this->getMax()
+            ]
+        ];
+        if ($this->showPips) {
+            $data['pips'] = [  // Show a scale with the slider
+                'mode'    => 'steps',
+                'stepped' => true,
+                'density' => $this->getDensity()
+            ];
+        }
+
+        if ($this->getStep()) {
+            $data['step'] = $this->getStep();
+        }
+
+        if (count($this->getRange())) { // Update the range if we've gotten a forced range
+            $data['range'] = array_merge($data['range'], $this->getRange());
+        }
+
+        $this->setData($data);
     }
 
     /**
@@ -225,6 +231,7 @@ class RangeField extends FormField
         return $this->data;
     }
 
+
     /**
      * @param array $data
      */
@@ -232,7 +239,6 @@ class RangeField extends FormField
     {
         $this->data = $data;
     }
-
 
     /**
      * @return int
@@ -273,7 +279,6 @@ class RangeField extends FormField
     {
         return $this->step;
     }
-
     /**
      * @param bool|int $step
      */
