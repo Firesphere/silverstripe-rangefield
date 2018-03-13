@@ -1,0 +1,32 @@
+{
+  "name": "firesphere/rangefield",
+  "description": "Range selector for SilverStripe",
+  "type": "silverstripe-vendormodule",
+  "license": "BSD-3-Clause",
+  "keywords": [
+    "RangeField"
+  ],
+  "authors": [
+    {
+      "name": "Simon Erkelens",
+      "email": "simonerkelens@silverstripe.com"
+    }
+  ],
+  "require": {
+    "silverstripe/framework": "^4.0"
+  },
+  "extra": {
+    "installer-name": "rangefield",
+    "branch-alias": {
+      "1.x-dev": "1.0.x-dev",
+      "dev-master": "1.x-dev"
+    },
+    "autoload-dev": {
+      "psr-4": {
+        "Firesphere\\RangeField": "src"
+      }
+    }
+  },
+  "prefer-stable": true,
+  "minimum-stability": "dev"
+}
