@@ -83,26 +83,58 @@ class RangeFieldTest extends SapphireTest
         ];
 
         $this->assertEquals($expected, $rangeField->getData());
+        $rangeField->setStep(1);
+
+        $rangeField->Field([]);
+
+        $expected = [
+            'start' => [50],
+            'snap'  => false,
+            'step'  => 1,
+            'range' => [
+                'min' => 25,
+                '17%' => 33,
+                '50%' => 50,
+                '83%' => 66,
+                'max' => 75
+            ],
+            'pips'  => [  // Show a scale with the slider
+                'mode'    => 'steps',
+                'stepped' => true,
+                'density' => 4
+            ]
+        ];
+
+        $this->assertEquals($expected, $rangeField->getData());
     }
 
     public function testGetSetMin()
     {
         $field = RangeField::create('Test', 'Test');
-        
+
         $field->setMin(10);
-        
+
         $this->assertEquals(10, $field->getMin());
+    }
+
+    public function testGetSetStep()
+    {
+        $field = RangeField::create('Test', 'Test');
+
+        $field->setStep(10);
+
+        $this->assertEquals(10, $field->getStep());
     }
 
     public function testGetSetMax()
     {
         $field = RangeField::create('Test', 'Test');
-        
+
         $field->setMax(10);
-        
+
         $this->assertEquals(10, $field->getMax());
     }
-    
+
     public function testGetSetRange()
     {
         $field = RangeField::create('Test', 'Test');
@@ -116,7 +148,7 @@ class RangeFieldTest extends SapphireTest
             '83%' => 66,
             'max' => 75
         ]);
-        
+
         $this->assertEquals([
             'min' => 25,
             '17%' => 33,
@@ -133,7 +165,7 @@ class RangeFieldTest extends SapphireTest
         $this->assertEquals(4, $field->getDensity());
 
         $field->setDensity(10);
-        
+
         $this->assertEquals(10, $field->getDensity());
     }
 
@@ -144,7 +176,7 @@ class RangeFieldTest extends SapphireTest
         $this->assertTrue($field->isShowPips());
 
         $field->setShowPips(false);
-        
+
         $this->assertFalse($field->isShowPips());
     }
 
@@ -155,7 +187,7 @@ class RangeFieldTest extends SapphireTest
         $this->assertFalse($field->isSnap());
 
         $field->setSnap(true);
-        
+
         $this->assertTrue($field->isSnap());
     }
 
