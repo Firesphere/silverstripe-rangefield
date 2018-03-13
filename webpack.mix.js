@@ -1,14 +1,17 @@
 const mix = require('laravel-mix');
 
 const themePath = 'client';
-const srcPath = `${themePath}/src/`;
+const jsPath = `${themePath}/src/js/`;
+const cssPath = `${themePath}/src/css/`;
 const destPath = `${themePath}/dist/`;
 
 const SRC = {
-  js: srcPath + 'main.js',
+  scss: cssPath + 'main.scss',
+  js: jsPath + 'main.js',
 };
 
 const DEST = {
+  css: destPath,
   js: destPath
 };
 
@@ -18,4 +21,4 @@ mix.options({
   processCssUrls: false,
 });
 
-mix.js(SRC.js, DEST.js);
+mix.js(SRC.js, DEST.js).sass(SRC.scss, DEST.css);

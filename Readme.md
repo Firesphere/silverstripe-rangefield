@@ -24,6 +24,10 @@ You can look for it's options here:
 
 https://github.com/leongersen/noUiSlider/
 
+When you change the amount of 'handlers' on a field, the values are reset, because it's impossible to determine which of the default values is supposed to be the original value
+
+
+
 # Options
 
 
@@ -40,6 +44,7 @@ https://github.com/leongersen/noUiSlider/
 | ShowPips | true | setShowPips() | Show pips |
 | Snap | false | setSnap() | Snap to the range-set values instead of fluent |
 
+*: These items can be set in the construct/create method
 
 # Known issues
 

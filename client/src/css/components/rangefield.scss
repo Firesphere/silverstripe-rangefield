@@ -1,0 +1,16 @@
+.range {
+  &.field {
+    min-height: 7.5rem;
+  }
+
+  &-display {
+    text-align: justify;
+    margin-bottom: -1rem;
+
+    &:after {
+      content: "";
+      display: inline-block;
+      width: 100%;
+    }
+  }
+}

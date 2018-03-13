@@ -97,18 +97,20 @@ class RangeField extends FormField
     {
         Requirements::set_force_js_to_bottom(true);
         Requirements::javascript('firesphere/rangefield:client/dist/main.js');
-        Requirements::css('firesphere/rangefield:client/dist/thirdparty/nouislider.min.css');
+        Requirements::css('firesphere/rangefield:client/dist/main.css');
 
         $data = [
-            'start' => $this->start,
-            'snap'  => $this->snap,
-            'range' => [
+            'start'             => $this->start,
+            'snap'              => $this->snap,
+            'animate'           => true,
+            'animationDuration' => 300,
+            'range'             => [
                 'min' => $this->min,
                 'max' => $this->max
             ]
         ];
         if ($this->showPips) {
-            $data['pips']  = [  // Show a scale with the slider
+            $data['pips'] = [  // Show a scale with the slider
                 'mode'    => 'steps',
                 'stepped' => true,
                 'density' => $this->density
@@ -130,7 +132,7 @@ class RangeField extends FormField
 
         /** @todo find a way to get this a bit nicer. It's the only way to get it in without breaking on submit */
         Requirements::insertHeadTags("<script type='text/javascript'>
-        var $this->name = " . Convert::array2json($data) . '</script>');
+        var $this->name = " . Convert::array2json($this->getData()) . '</script>');
 
         return $field;
     }
@@ -279,5 +281,4 @@ class RangeField extends FormField
     {
         $this->step = $step;
     }
-
 }
