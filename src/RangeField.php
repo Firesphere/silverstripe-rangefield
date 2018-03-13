@@ -17,9 +17,9 @@ class RangeField extends FormField
 {
 
     /**
-     * @var int
+     * @var array
      */
-    protected $min = 0;
+    protected $min = [0];
 
     /**
      * @var int
@@ -62,7 +62,7 @@ class RangeField extends FormField
      * @param null|string $title The human-readable field label.
      * @param mixed $value The value of the field.
      * @param int|array $min Lowest value of the range
-     * @param int|array $max Highest value of the range
+     * @param int $max Highest value of the range
      * @param array $range Associative array with keys which determine the percentage point on the range
      *                     And values being the labels on the field
      */
@@ -70,9 +70,6 @@ class RangeField extends FormField
     {
         if (!is_array($min)) {
             $min = [$min];
-        }
-        if (!is_array($max)) {
-            $max = [$max];
         }
         $this->min = $min;
         $this->max = $max;
@@ -129,7 +126,7 @@ class RangeField extends FormField
     }
 
     /**
-     * @return int
+     * @return array
      */
     public function getMin()
     {
@@ -137,11 +134,11 @@ class RangeField extends FormField
     }
 
     /**
-     * @param int $min
+     * @param int|array $min
      */
     public function setMin($min)
     {
-        $this->min = $min;
+        $this->min = (array)$min;
     }
 
     /**
