@@ -30,6 +30,7 @@ https://github.com/leongersen/noUiSlider/
 
 When you change the amount of 'handlers' on a field, the values are reset, because it's impossible to determine which of the default values is supposed to be the original value
 
+Selections are stored as a comma-separated set of values, e.g. `33.00,50.00`, you need to apply your own logic to use the given values in the frontend.
 
 
 # Options
