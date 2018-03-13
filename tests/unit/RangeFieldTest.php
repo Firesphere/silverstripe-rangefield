@@ -32,7 +32,7 @@ class RangeFieldTest extends SapphireTest
 
         $expected = [
             'start' => [50],
-            'snap'  => true,
+            'snap'  => false,
             'range' => [
                 'min' => 25,
                 '17%' => 33,

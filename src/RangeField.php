@@ -120,7 +120,7 @@ class RangeField extends FormField
         }
 
         if (count($this->range)) { // Update the range if we've gotten a forced range
-            $data['range'] = $this->range;
+            $data['range'] = array_merge($data['range'], $this->range);
         }
 
         $this->setData($data);
@@ -148,7 +148,7 @@ class RangeField extends FormField
      */
     public function setStart($start)
     {
-        $this->start = $start;
+        $this->start = (array)$start;
     }
 
     /**
