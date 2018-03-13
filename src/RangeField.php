@@ -43,13 +43,19 @@ class RangeField extends FormField
      * @param string $name The internal field name, passed to forms.
      * @param null|string $title The human-readable field label.
      * @param mixed $value The value of the field.
-     * @param int $min Lowest value of the range
-     * @param int $max Highest value of the range
+     * @param int|array $min Lowest value of the range
+     * @param int|array $max Highest value of the range
      * @param array $range Associative array with keys which determine the percentage point on the range
      *                     And values being the labels on the field
      */
     public function __construct($name, $title = null, $min = 0, $max = 100, $range = [], $value = null)
     {
+        if (!is_array($min)) {
+            $min = [$min];
+        }
+        if (!is_array($max)) {
+            $max = [$max];
+        }
         $this->min = $min;
         $this->max = $max;
         $this->range = $range;
@@ -66,16 +72,16 @@ class RangeField extends FormField
         Requirements::css('firesphere/rangefield:client/dist/thirdparty/nouislider.min.css');
 
         $data = [
-            'start' => [$this->min],
+            'start' => $this->min,
             'snap'  => $this->snap,
             'range' => [
-                'min' => $this->min,
-                'max' => $this->max
+                'min' => min($this->min),
+                'max' => max($this->max)
             ],
             'pips'  => [  // Show a scale with the slider
                 'mode'    => 'steps',
                 'stepped' => true,
-                'density' => 4
+                'density' => 0
             ]
         ];
 
