@@ -265,7 +265,7 @@ class RangeField extends FormField
     }
 
     /**
-     * @return int
+     * @return bool|int
      */
     public function getStep()
     {
@@ -273,7 +273,7 @@ class RangeField extends FormField
     }
 
     /**
-     * @param int $step
+     * @param bool|int $step
      */
     public function setStep($step)
     {

@@ -121,6 +121,8 @@ class RangeFieldTest extends SapphireTest
     {
         $field = RangeField::create('Test', 'Test');
 
+        $this->assertNull($field->getStep());
+
         $field->setStep(10);
 
         $this->assertEquals(10, $field->getStep());
