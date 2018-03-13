@@ -124,6 +124,7 @@ class RangeField extends FormField
                 'max' => $this->getMax()
             ]
         ];
+        
         if ($this->showPips) {
             $data['pips'] = [  // Show a scale with the slider
                 'mode'    => 'steps',
@@ -279,6 +280,7 @@ class RangeField extends FormField
     {
         return $this->step;
     }
+
     /**
      * @param bool|int $step
      */
