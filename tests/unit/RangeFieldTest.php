@@ -26,6 +26,8 @@ class RangeFieldTest extends SapphireTest
             ['min' => 25, '17%' => 33, '50%' => 50, '83%' => 66, 'max' => 75]
         );
 
+        $rangeField->Field([]);
+
         $expected = [
             'start' => [25],
             'snap'  => true,
