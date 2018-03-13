@@ -1,3 +1,7 @@
+[![CircleCI](https://circleci.com/gh/Firesphere/silverstripe-rangefield.svg?style=svg)](https://circleci.com/gh/Firesphere/silverstripe-rangefield)
+[![codecov](https://codecov.io/gh/Firesphere/silverstripe-rangefield/branch/master/graph/badge.svg)](https://codecov.io/gh/Firesphere/silverstripe-rangefield)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Firesphere/silverstripe-rangefield/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Firesphere/silverstripe-rangefield/?branch=master)
+
 # Range field
 
 Play with ranges in your forms in SilverStripe

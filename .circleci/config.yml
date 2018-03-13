@@ -57,4 +57,5 @@ jobs:
 
       # run tests!
       - run: vendor/bin/phpunit --coverage-clover=coverage.xml -d memory_limit=512M tests/unit
+      - run: vendor/bin/phpcs --standard=phpcs.xml.dist src unit
       - run: bash <(curl -s https://codecov.io/bash) -f coverage.xml
