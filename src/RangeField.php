@@ -17,9 +17,15 @@ class RangeField extends FormField
 {
 
     /**
+     * @var array|int
+     */
+    protected $start = [0];
+
+
+    /**
      * @var array
      */
-    protected $min = [0];
+    protected $min = 0;
 
     /**
      * @var int
@@ -60,17 +66,20 @@ class RangeField extends FormField
      * RangeField constructor.
      * @param string $name The internal field name, passed to forms.
      * @param null|string $title The human-readable field label.
+     * @param int|array $start Starting point(s) on the line
      * @param mixed $value The value of the field.
      * @param int|array $min Lowest value of the range
      * @param int $max Highest value of the range
      * @param array $range Associative array with keys which determine the percentage point on the range
      *                     And values being the labels on the field
      */
-    public function __construct($name, $title = null, $min = 0, $max = 100, $range = [], $value = null)
+    public function __construct($name, $title = null, $start = 0, $min = 0, $max = 100, $range = [], $value = null)
     {
-        if (!is_array($min)) {
-            $min = [$min];
+        if (!is_array($start)) {
+            $start = [$start];
         }
+
+        $this->start = $start;
         $this->min = $min;
         $this->max = $max;
         $this->range = $range;
@@ -91,11 +100,11 @@ class RangeField extends FormField
         Requirements::css('firesphere/rangefield:client/dist/thirdparty/nouislider.min.css');
 
         $data = [
-            'start' => $this->min,
+            'start' => $this->start,
             'snap'  => $this->snap,
             'range' => [
-                'min' => min($this->min),
-                'max' => max($this->max)
+                'min' => $this->min,
+                'max' => $this->max
             ]
         ];
         if ($this->showPips) {
@@ -119,10 +128,27 @@ class RangeField extends FormField
         $field = parent::Field($properties);
 
 
+        /** @todo find a way to get this a bit nicer. It's the only way to get it in without breaking on submit */
         Requirements::insertHeadTags("<script type='text/javascript'>
         var $this->name = " . Convert::array2json($data) . '</script>');
 
         return $field;
+    }
+
+    /**
+     * @return array|int
+     */
+    public function getStart()
+    {
+        return $this->start;
+    }
+
+    /**
+     * @param array|int $start
+     */
+    public function setStart($start)
+    {
+        $this->start = $start;
     }
 
     /**

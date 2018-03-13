@@ -10,7 +10,8 @@ class RangeFieldTest extends SapphireTest
     public function testDefault()
     {
         $field = RangeField::create('Test', 'Test');
-        $this->assertEquals([0], $field->getMin());
+        $this->assertEquals([0], $field->getStart());
+        $this->assertEquals(0, $field->getMin());
         $this->assertEquals(100, $field->getMax());
         $this->assertFalse($field->isSnap());
         $this->assertEquals([], $field->getRange());
@@ -21,6 +22,7 @@ class RangeFieldTest extends SapphireTest
         $rangeField = RangeField::create(
             'TestInt',
             'Test',
+            50,
             25,
             75,
             ['min' => 25, '17%' => 33, '50%' => 50, '83%' => 66, 'max' => 75]
@@ -29,7 +31,7 @@ class RangeFieldTest extends SapphireTest
         $rangeField->Field([]);
 
         $expected = [
-            'start' => [25],
+            'start' => [50],
             'snap'  => true,
             'range' => [
                 'min' => 25,
@@ -109,5 +111,20 @@ class RangeFieldTest extends SapphireTest
         $field->setShowPips(false);
         
         $this->assertFalse($field->isShowPips());
+    }
+
+    public function testGetSetStart()
+    {
+        $field = RangeField::create('Test', 'Test', [5, 25]);
+
+        $this->assertEquals([5, 25], $field->getStart());
+
+        $field = RangeField::create('Test', 'Test');
+
+        $this->assertEquals([0], $field->getStart());
+
+        $field->setStart(10);
+
+        $this->assertEquals([10], $field->getStart());
     }
 }
