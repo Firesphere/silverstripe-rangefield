@@ -54,7 +54,7 @@ class RangeField extends FormField
     /**
      * @var int|bool
      */
-    protected $step = false;
+    protected $step;
 
     /**
      * RangeField constructor.
@@ -109,7 +109,7 @@ class RangeField extends FormField
             ];
         }
 
-        if ($this->getStep() !== false) {
+        if ($this->getStep()) {
             $data['step'] = $this->getStep();
         }
 
