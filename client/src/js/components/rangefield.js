@@ -13,8 +13,8 @@ export default function () {
         let fieldName = rangefield.getAttribute('data-settings');
         let input = document.body.querySelectorAll(`input[name=${fieldName}]`)[0];
         let settings = window[fieldName];
-        let values = input.getAttribute('value').split(',');
         if (input.hasAttribute('value') && values.length === settings['start'].length) {
+          let values = input.getAttribute('value').split(',');
           settings['start'] = values;
         }
         noUiSlider.create(rangefield, settings);
@@ -26,7 +26,6 @@ export default function () {
             value = [value];
           }
           input.setAttribute('value', value.join(','));
-          console.log(value);
           description.innerHTML = value.join(' ');
         });
       });
