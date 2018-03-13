@@ -2,6 +2,49 @@
 
 Play with ranges in your forms in SilverStripe
 
+# Installation
+
+`composer require firesphere/rangefield`
+
+# Usage
+
+`RangeField::create('FieldName', 'Range', {start value}, {minimum}, {maximum}, [array of possible percentages or points])`
+
+Example array for the range settings:
+
+```yaml
+
+['min' => 25, '17%' => 33, '50%' => 50, '83%' => 66, 'max' => 75]
+```
+
+The above range will be merged together with the minimum/maximum, where the given array will override the min/max values if set
+
+The field uses noUiSlider as the engine to render the field.
+You can look for it's options here:
+
+https://github.com/leongersen/noUiSlider/
+
+# Options
+
+
+| Option | Default | Method | Usage |
+|-|-|-|-|
+| Snap | false | setSnap() | Set snapping to points |
+| Data | [] | setData() | Completely override the generated data |
+| Max | 0 | setMax() | Change the maximum value* |
+| Min | 100 | setMin() | Change the minimum value* |
+| Densitiy | 5 | setDensity() | Set the density of the Pips |
+| Range | [] | setRange() | Set the range* |
+| Start | [0] | setStart() | Set the default value* |
+| Step | null | setStep() | Set the step size |
+| ShowPips | true | setShowPips() | Show pips |
+| Snap | false | setSnap() | Snap to the range-set values instead of fluent |
+
+
+# Known issues
+
+Multiple start values seems not to work properly
+
 # Actual license
 
 This module is published under BSD 3-clause license, although these are not in the actual classes, the license does apply:
