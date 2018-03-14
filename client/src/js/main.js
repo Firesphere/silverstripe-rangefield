@@ -1,3 +1,9 @@
 import rangefield from './components/rangefield';
 
-rangefield();
+const init = () => {
+  rangefield();
+};
+
+init(); //call on load
+
+export default init;
