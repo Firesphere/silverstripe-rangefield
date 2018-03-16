@@ -13,8 +13,29 @@ const withTargetInputValueHtml = '<head></head><body>' +
   '<div data-range="rangefield" data-settings="TestRange" id="test-rangefield"></div>' +
   '<input type="hidden" value="33" class="range" name="TestRange" id="test-input"></body>';
 
+const withTargetInputDualValueHtml = '<head></head><body>' +
+  '<p class="form__field-description TestRange-range-description range-display" id="test-label">0</p>' +
+  '<div data-range="rangefield" data-settings="TestRange" id="test-rangefield"></div>' +
+  '<input type="hidden" value="50,75" class="range" name="TestRange" id="test-input"></body>';
+
 const TEST_SETTINGS = {
   start: ["50.00"],
+  snap: true,
+  animate: true,
+  animationDuration: 300,
+  range: { min: 25, max: 75, '17%': 33, '50%': 50, '83%': 66 }
+};
+
+const TEST_SETTINGS_NO_START_ARRAY = {
+  start: "50.00",
+  snap: true,
+  animate: true,
+  animationDuration: 300,
+  range: { min: 25, max: 75, '17%': 33, '50%': 50, '83%': 66 }
+};
+
+const TEST_SETTINGS_DUAL = {
+  start: ["50.00", "75.00"],
   snap: true,
   animate: true,
   animationDuration: 300,
@@ -25,6 +46,7 @@ const allWithSelector = selector => Array.from(document.querySelectorAll(selecto
 const getRangefieldTargets = () => allWithSelector('div[data-range=rangefield]');
 const getRangefieldInstances = () => allWithSelector('.noUi-target');
 const setHtml = html => document.body.innerHTML = html;
+const getHtml = html => document.body.innerHTML;
 const giveItASecToMount = handler => setTimeout(handler, 1000);
 
 const getMockMutationObserver = (callback) => ({
@@ -87,6 +109,26 @@ describe('rangefield', () => {
     expect(getRangefieldInstances()).toHaveLength(1);
   });
 
+  it('does not do anything if there is nothing to do', () => {
+    const createSpy = jest.spyOn(noUiSlider, 'create');
+    const mockMutationObserver = getMockMutationObserver();
+    const mockObserverFactory = jest.fn(() => mockMutationObserver);
+    setHtml(withTargetInputValueHtml);
+
+    rangefield();
+
+    expect(createSpy).toHaveBeenLastCalledWith(expect.any(HTMLElement), TEST_SETTINGS)
+
+    const html = getHtml()
+
+    rangefield(mockObserverFactory);
+
+    const html2 = getHtml()
+
+    expect(html).toEqual(html2)
+
+  });
+
   it('updates the settings to use the field value as start value if present', () => {
     const createSpy = jest.spyOn(noUiSlider, 'create');
     setHtml(withTargetInputValueHtml);
@@ -96,6 +138,51 @@ describe('rangefield', () => {
     rangefield();
 
     expect(createSpy).toHaveBeenLastCalledWith(expect.any(HTMLElement), expectedSettings)
+
+    expect(getRangefieldTargets()).toHaveLength(1);
+    expect(getRangefieldInstances()).toHaveLength(1);
+
+    // Reset the test settings
+    Object.assign(TEST_SETTINGS, { start: ['50.00'] });
+  });
+
+  it('updates the settings to use an array for the field value as start value if init is not an array', () => {
+    window.TestRange = TEST_SETTINGS_NO_START_ARRAY;
+
+    const createSpy = jest.spyOn(noUiSlider, 'create');
+    setHtml(withTargetHtml);
+
+    rangefield();
+
+    expect(createSpy).toHaveBeenLastCalledWith(expect.any(HTMLElement), TEST_SETTINGS)
+
+    expect(getRangefieldTargets()).toHaveLength(1);
+    expect(getRangefieldInstances()).toHaveLength(1);
+  });
+
+  it('not convert the settings to an array to use the field value as start value if present', () => {
+    window.TestRange = TEST_SETTINGS_DUAL;
+
+    const createSpy = jest.spyOn(noUiSlider, 'create');
+    setHtml(withTargetInputDualValueHtml);
+
+    rangefield();
+
+    expect(createSpy).toHaveBeenLastCalledWith(expect.any(HTMLElement), TEST_SETTINGS_DUAL)
+
+    expect(getRangefieldTargets()).toHaveLength(1);
+    expect(getRangefieldInstances()).toHaveLength(1);
+  });
+
+  it('updates with new settings if the values differ from the config', () => {
+    window.TestRange = TEST_SETTINGS_DUAL;
+
+    const createSpy = jest.spyOn(noUiSlider, 'create');
+    setHtml(withTargetInputValueHtml);
+
+    rangefield();
+
+    expect(createSpy).toHaveBeenLastCalledWith(expect.any(HTMLElement), TEST_SETTINGS_DUAL)
 
     expect(getRangefieldTargets()).toHaveLength(1);
     expect(getRangefieldInstances()).toHaveLength(1);

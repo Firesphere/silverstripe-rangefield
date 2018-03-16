@@ -11,6 +11,9 @@ const mountRangeField = (rangefield) => {
   let fieldName = rangefield.getAttribute('data-settings');
   let input = document.body.querySelectorAll(`input[name=${fieldName}]`)[0];
   let settings = window[fieldName];
+  if (!Array.isArray(settings['start'])) {
+    settings['start'] = [settings['start']];
+  }
   if (input.hasAttribute('value')) {
     let values = input.getAttribute('value').split(',');
     if (values.length === settings['start'].length) {

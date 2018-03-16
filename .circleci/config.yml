@@ -60,3 +60,7 @@ jobs:
       - run: vendor/bin/phpcs --standard=phpcs.xml.dist src tests/unit
       - run: yarn test:coverage
       - run: bash <(curl -s https://codecov.io/bash) -f coverage.xml
+      - store_artifacts:
+          path: ./client/src/js/tests/coverage/lcov-report
+          destination: jest
+
