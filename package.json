@@ -5,14 +5,20 @@
   "private": false,
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "webpack-bundle-analyzer": "^2.10.0",
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.4.1",
+    "cross-env": "^5.1.1",
+    "jest": "^22.4.2",
     "laravel-mix": "^2.0.0",
-    "cross-env": "^5.1.1"
+    "mutation-observer": "^1.0.3",
+    "webpack-bundle-analyzer": "^2.10.0"
   },
   "scripts": {
     "build": "node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "watch": "yarn build --watch",
-    "package": "node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    "package": "node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "test": "jest",
+    "test:coverage": "yarn test --coverage"
   },
   "dependencies": {
     "nouislider": "^11.0.3"
@@ -20,5 +26,24 @@
   "browserslist": [
     "> 1% in NZ",
     "not ie <= 10"
-  ]
+  ],
+  "jest": {
+    "collectCoverageFrom": [
+      "<rootDir>/client/src/js/**/*.js"
+    ],
+    "coverageDirectory": "<rootDir>client/tests/coverage",
+    "moduleDirectories": [
+      "<rootDir>/node_modules"
+    ],
+    "roots": [
+      "<rootDir>/client"
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>client/tests/jestSetup.js",
+    "testEnvironment": "jsdom",
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      "^.+\\.test.js$": "babel-jest"
+    },
+    "verbose": true
+  }
 }
