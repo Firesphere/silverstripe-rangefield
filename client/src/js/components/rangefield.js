@@ -44,10 +44,11 @@ const mount = () => {
 
 const onMutation = () => mount();
 
+/** global: MutationObserver */
 const observerFactory = callback => new MutationObserver(callback);
 
 const loadRangeSlider = (createObserver = observerFactory) => {
-  mount(); //mount any elements in the dom on load
+  mount(); //mount any relevant elements in the dom on load
   createObserver(onMutation).observe(document.body, observerConfig);
 };
 

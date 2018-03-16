@@ -61,6 +61,6 @@ jobs:
       - run: yarn test:coverage
       - run: bash <(curl -s https://codecov.io/bash) -f coverage.xml
       - store_artifacts:
-          path: ./client/src/js/tests/coverage/lcov-report
+          path: /root/var/www/client/tests/coverage/lcov-report/
           destination: jest
 

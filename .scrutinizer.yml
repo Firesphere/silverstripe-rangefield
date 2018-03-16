@@ -4,6 +4,7 @@ checks:
   php:
     code_rating: true
     duplication: true
+  javascript: true
 
 filter:
-  paths: [src/*, tests/*]
+  paths: [src/*, tests/*, client/src/js/*]
