@@ -55,7 +55,8 @@ Limited formatting can be applied to the value via the setUnit(), setDecimalPlac
 
 # Known issues
 
-Multiple start values seems not to work properly
+ - Multiple start values seems not to work properly
+ - Slider starts at min rather than current value after publish
 
 # Actual license
 

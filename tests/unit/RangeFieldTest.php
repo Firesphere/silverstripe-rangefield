@@ -33,21 +33,21 @@ class RangeFieldTest extends SapphireTest
         $rangeField->Field([]);
 
         $expected = [
-            'start' => [50],
-            'snap' => false,
-            'animate' => true,
+            'start'             => [50],
+            'snap'              => false,
+            'animate'           => true,
             'animationDuration' => 300,
-            'range' => [
+            'range'             => [
                 'min' => 25,
                 '17%' => 33,
                 '50%' => 50,
                 '83%' => 66,
                 'max' => 75
             ],
-            'unit' => '',
-            'decimalPlaces' => 2,
-            'pips' => [  // Show a scale with the slider
-                'mode' => 'steps',
+            'unit'              => '',
+            'decimalPlaces'     => 2,
+            'pips'              => [  // Show a scale with the slider
+                'mode'    => 'steps',
                 'stepped' => true,
                 'density' => 4
             ]
@@ -72,24 +72,24 @@ class RangeFieldTest extends SapphireTest
         $rangeField->Field([]);
 
         $expected = [
-            'start' => [50],
-            'snap' => true,
-            'animate' => true,
+            'start'             => [50],
+            'snap'              => true,
+            'animate'           => true,
             'animationDuration' => 300,
-            'range' => [
+            'range'             => [
                 'min' => 25,
                 '17%' => 33,
                 '50%' => 50,
                 '83%' => 66,
                 'max' => 75
             ],
-            'pips' => [  // Show a scale with the slider
-                'mode' => 'steps',
+            'pips'              => [  // Show a scale with the slider
+                'mode'    => 'steps',
                 'stepped' => true,
                 'density' => 4
             ],
-            'unit' => '',
-            'decimalPlaces' => 2,
+            'unit'              => '',
+            'decimalPlaces'     => 2,
         ];
 
         $this->assertEquals($expected, $rangeField->getData());
@@ -98,25 +98,25 @@ class RangeFieldTest extends SapphireTest
         $rangeField->Field([]);
 
         $expected = [
-            'start' => [50],
-            'snap' => true,
-            'animate' => true,
+            'start'             => [50],
+            'snap'              => true,
+            'animate'           => true,
             'animationDuration' => 300,
-            'step' => 1,
-            'range' => [
+            'step'              => 1,
+            'range'             => [
                 'min' => 25,
                 '17%' => 33,
                 '50%' => 50,
                 '83%' => 66,
                 'max' => 75
             ],
-            'pips' => [  // Show a scale with the slider
-                'mode' => 'steps',
+            'pips'              => [  // Show a scale with the slider
+                'mode'    => 'steps',
                 'stepped' => true,
                 'density' => 4
             ],
-            'unit' => '',
-            'decimalPlaces' => 2,
+            'unit'              => '',
+            'decimalPlaces'     => 2,
         ];
 
         $this->assertEquals($expected, $rangeField->getData());
