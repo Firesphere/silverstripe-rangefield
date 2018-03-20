@@ -31,10 +31,9 @@ https://github.com/leongersen/noUiSlider/
 When you change the amount of 'handlers' on a field, the values are reset, because it's impossible to determine which of the default values is supposed to be the original value
 
 Selections are stored as a comma-separated set of values, e.g. `33.00,50.00`, you need to apply your own logic to use the given values in the frontend.
-
+Limited formatting can be applied to the value via the setUnit(), setDecimalPlace() and setFormat() methods. 
 
 # Options
-
 
 | Option | Default | Method | Usage |
 |-|-|-|-|
@@ -42,12 +41,15 @@ Selections are stored as a comma-separated set of values, e.g. `33.00,50.00`, yo
 | Data | [] | setData() | Completely override the generated data |
 | Max | 0 | setMax() | Change the maximum value* |
 | Min | 100 | setMin() | Change the minimum value* |
-| Densitiy | 5 | setDensity() | Set the density of the Pips |
+| Density | 5 | setDensity() | Set the density of the Pips |
 | Range | [] | setRange() | Set the range* |
 | Start | [0] | setStart() | Set the default value* |
 | Step | null | setStep() | Set the step size |
 | ShowPips | true | setShowPips() | Show pips |
 | Snap | false | setSnap() | Snap to the range-set values instead of fluent |
+| Unit | '' | setUnit() | append a unit to the output value |
+| DecimalPlace | 2 | setDecimalPlace() | format the number of decimal places in the output value |
+| Format | '', 2 | setFormat() | a short cut to set Unit and Decimal places |
 
 *: These items can be set in the construct/create method
 

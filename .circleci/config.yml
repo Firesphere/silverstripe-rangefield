@@ -59,6 +59,8 @@ jobs:
       - run: vendor/bin/phpunit --coverage-clover=coverage.xml -d memory_limit=512M tests/unit
       - run: vendor/bin/phpcs --standard=phpcs.xml.dist src tests/unit
       - run: yarn test:coverage
+      - run: yarn lint:style
+      - run: yarn lint:js
       - run: bash <(curl -s https://codecov.io/bash) -f coverage.xml
       - store_artifacts:
           path: /root/var/www/client/tests/coverage/lcov-report/

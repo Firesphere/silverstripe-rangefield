@@ -21,7 +21,6 @@ class RangeField extends FormField
      */
     protected $start = [0];
 
-
     /**
      * @var int
      */
@@ -61,6 +60,18 @@ class RangeField extends FormField
      * @var int|bool
      */
     protected $step;
+
+
+    /**
+     * @var string
+     */
+    protected $unit = '';
+
+
+    /**
+     * @var int
+     */
+    protected $decimalPlaces = 2;
 
     /**
      * RangeField constructor.
@@ -111,23 +122,35 @@ class RangeField extends FormField
         return $field;
     }
 
+    /**
+     * @param string unit
+     * @param int $decimalPlaces
+     */
+    public function setFormat($unit, $decimalPlaces)
+    {
+        $this->setUnit($unit);
+        $this->setdecimalPlaces($decimalPlaces);
+    }
+
 
     protected function setupData()
     {
         $data = [
-            'start'             => $this->getStart(),
-            'snap'              => $this->isSnap(),
-            'animate'           => true,
+            'start' => $this->getStart(),
+            'snap' => $this->isSnap(),
+            'animate' => true,
             'animationDuration' => 300,
-            'range'             => [
+            'range' => [
                 'min' => $this->getMin(),
                 'max' => $this->getMax()
-            ]
+            ],
+            'unit' => $this->getUnit(),
+            'decimalPlaces' => $this->getdecimalPlaces()
         ];
 
         if ($this->showPips) {
             $data['pips'] = [  // Show a scale with the slider
-                'mode'    => 'steps',
+                'mode' => 'steps',
                 'stepped' => true,
                 'density' => $this->getDensity()
             ];
@@ -232,7 +255,6 @@ class RangeField extends FormField
         return $this->data;
     }
 
-
     /**
      * @param array $data
      */
@@ -287,5 +309,37 @@ class RangeField extends FormField
     public function setStep($step)
     {
         $this->step = $step;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUnit()
+    {
+        return $this->unit;
+    }
+
+    /**
+     * @param string $unit
+     */
+    public function setUnit($unit)
+    {
+        $this->unit = $unit;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDecimalPlaces()
+    {
+        return $this->decimalPlaces;
+    }
+
+    /**
+     * @param int $decimalPlaces
+     */
+    public function setDecimalPlaces($decimalPlaces)
+    {
+        $this->decimalPlaces = $decimalPlaces;
     }
 }

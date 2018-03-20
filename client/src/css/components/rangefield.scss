@@ -7,7 +7,7 @@
     text-align: justify;
     margin-bottom: -1rem;
 
-    &:after {
+    &::after {
       content: "";
       display: inline-block;
       width: 100%;
