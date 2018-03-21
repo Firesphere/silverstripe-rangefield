@@ -15,6 +15,8 @@ class RangeFieldTest extends SapphireTest
         $this->assertEquals(100, $field->getMax());
         $this->assertFalse($field->isSnap());
         $this->assertEquals([], $field->getRange());
+        $this->assertEquals(2, $field->getdecimalPlaces());
+        $this->assertEquals('', $field->getUnit());
     }
 
     public function testRange()
@@ -42,6 +44,8 @@ class RangeFieldTest extends SapphireTest
                 '83%' => 66,
                 'max' => 75
             ],
+            'unit'              => '',
+            'decimalPlaces'     => 2,
             'pips'              => [  // Show a scale with the slider
                 'mode'    => 'steps',
                 'stepped' => true,
@@ -83,7 +87,9 @@ class RangeFieldTest extends SapphireTest
                 'mode'    => 'steps',
                 'stepped' => true,
                 'density' => 4
-            ]
+            ],
+            'unit'              => '',
+            'decimalPlaces'     => 2,
         ];
 
         $this->assertEquals($expected, $rangeField->getData());
@@ -108,7 +114,9 @@ class RangeFieldTest extends SapphireTest
                 'mode'    => 'steps',
                 'stepped' => true,
                 'density' => 4
-            ]
+            ],
+            'unit'              => '',
+            'decimalPlaces'     => 2,
         ];
 
         $this->assertEquals($expected, $rangeField->getData());
@@ -212,5 +220,41 @@ class RangeFieldTest extends SapphireTest
         $field->setStart(10);
 
         $this->assertEquals([10], $field->getStart());
+    }
+
+    public function testGetSetUnit()
+    {
+        $field = RangeField::create('Test', 'Test');
+
+        $this->assertEquals('', $field->getUnit());
+
+        $field->setUnit('%');
+
+        $this->assertEquals('%', $field->getUnit());
+    }
+
+    public function testGetSetdecimalPlaces()
+    {
+        $field = RangeField::create('Test', 'Test');
+
+        $this->assertEquals(2, $field->getDecimalPlaces());
+
+        $field->setDecimalPlaces(1);
+
+        $this->assertEquals(1, $field->getDecimalPlaces());
+    }
+
+    public function testSetFormat()
+    {
+        $field = RangeField::create('Test', 'Test');
+
+        $this->assertEquals(2, $field->getDecimalPlaces());
+        $this->assertEquals('', $field->getUnit());
+
+
+        $field->setFormat('cm', 0);
+
+        $this->assertEquals(0, $field->getDecimalPlaces());
+        $this->assertEquals('cm', $field->getUnit());
     }
 }

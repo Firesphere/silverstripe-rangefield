@@ -1,0 +1,12 @@
+{
+	"extends": "stylelint-config-standard",
+	"rules": {
+		"color-hex-case": "upper",
+		"at-rule-no-unknown": [true, {
+			"ignoreAtRules": ["mixin", "content", "include", "each", "extend", "function", "return"]
+		}],
+		"declaration-property-unit-blacklist": [{
+			"line-height": ["px", "rem", "em"]
+		}]
+	}
+}

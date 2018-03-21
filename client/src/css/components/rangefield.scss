@@ -1,13 +1,23 @@
 .range {
+  display: flex;
+  align-items: center;
+
   &.field {
     min-height: 7.5rem;
   }
 
-  &-display {
-    text-align: justify;
-    margin-bottom: -1rem;
+  &__field {
+    flex-grow: 1;
+  }
 
-    &:after {
+  &__display {
+    border-left: 1px solid #DBE0E9;
+    font-size: 1.25rem;
+    margin: 0 0 -1rem 2.5rem;
+    padding: 1.5rem 0 0 2rem;
+    text-align: justify;
+
+    &::after {
       content: "";
       display: inline-block;
       width: 100%;

@@ -21,7 +21,6 @@ class RangeField extends FormField
      */
     protected $start = [0];
 
-
     /**
      * @var int
      */
@@ -62,15 +61,27 @@ class RangeField extends FormField
      */
     protected $step;
 
+
+    /**
+     * @var string
+     */
+    protected $unit = '';
+
+
+    /**
+     * @var int
+     */
+    protected $decimalPlaces = 2;
+
     /**
      * RangeField constructor.
-     * @param string $name The internal field name, passed to forms.
+     * @param string      $name The internal field name, passed to forms.
      * @param null|string $title The human-readable field label.
-     * @param int|array $start Starting point(s) on the line
-     * @param mixed $value The value of the field.
-     * @param int|array $min Lowest value of the range
-     * @param int $max Highest value of the range
-     * @param array $range Associative array with keys which determine the percentage point on the range
+     * @param int|array   $start Starting point(s) on the line
+     * @param mixed       $value The value of the field.
+     * @param int|array   $min Lowest value of the range
+     * @param int         $max Highest value of the range
+     * @param array       $range Associative array with keys which determine the percentage point on the range
      *                     And values being the labels on the field
      */
     public function __construct($name, $title = null, $start = 0, $min = 0, $max = 100, $range = [], $value = null)
@@ -111,6 +122,16 @@ class RangeField extends FormField
         return $field;
     }
 
+    /**
+     * @param string unit
+     * @param int $decimalPlaces
+     */
+    public function setFormat($unit, $decimalPlaces)
+    {
+        $this->setUnit($unit);
+        $this->setdecimalPlaces($decimalPlaces);
+    }
+
 
     protected function setupData()
     {
@@ -122,7 +143,9 @@ class RangeField extends FormField
             'range'             => [
                 'min' => $this->getMin(),
                 'max' => $this->getMax()
-            ]
+            ],
+            'unit'              => $this->getUnit(),
+            'decimalPlaces'     => $this->getdecimalPlaces()
         ];
 
         if ($this->showPips) {
@@ -232,7 +255,6 @@ class RangeField extends FormField
         return $this->data;
     }
 
-
     /**
      * @param array $data
      */
@@ -287,5 +309,37 @@ class RangeField extends FormField
     public function setStep($step)
     {
         $this->step = $step;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUnit()
+    {
+        return $this->unit;
+    }
+
+    /**
+     * @param string $unit
+     */
+    public function setUnit($unit)
+    {
+        $this->unit = $unit;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDecimalPlaces()
+    {
+        return $this->decimalPlaces;
+    }
+
+    /**
+     * @param int $decimalPlaces
+     */
+    public function setDecimalPlaces($decimalPlaces)
+    {
+        $this->decimalPlaces = $decimalPlaces;
     }
 }

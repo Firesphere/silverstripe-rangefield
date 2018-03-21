@@ -4,6 +4,6 @@ const init = () => {
   rangefield();
 };
 
-init(); //call on load
+init(); // call on load
 
 export default init;
