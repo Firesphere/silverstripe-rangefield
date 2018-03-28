@@ -28,7 +28,7 @@ const updateElementValue = (settings, fieldName, value) => {
   const formatter = format(settings.unit, settings.decimalPlaces);
   const displayValue = hasFormatSettings(settings) ? value.map(formatter) : value;
 
-  input.setAttribute(VALUE_ATTR, displayValue.join(','));
+  input.setAttribute(VALUE_ATTR, value.join(','));
   description.innerHTML = displayValue.join(' ');
 };
 
