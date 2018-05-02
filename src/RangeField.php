@@ -106,10 +106,6 @@ class RangeField extends FormField
      */
     public function field($properties = array())
     {
-        Requirements::set_force_js_to_bottom(true);
-        Requirements::javascript('firesphere/rangefield:client/dist/main.js');
-        Requirements::css('firesphere/rangefield:client/dist/main.css');
-
         $this->setupData();
 
         $field = parent::Field($properties);

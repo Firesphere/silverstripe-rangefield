@@ -1,0 +1,5 @@
+SilverStripe\Admin\LeftAndMain:
+  extra_requirements_javascript:
+    - 'firesphere/rangefield:client/dist/main.js'
+  extra_requirements_css:
+    - 'firesphere/rangefield:client/dist/main.css'
