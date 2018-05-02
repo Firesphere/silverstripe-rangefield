@@ -4,3 +4,4 @@
     <p class="form__field-description $Name-range-description range__display">$ValueForTemplate</p>
     <div class="clearfix"></div>
 </div>
+<script type="application/javascript">$JSConfig.RAW</script>

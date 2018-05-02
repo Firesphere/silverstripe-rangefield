@@ -106,14 +106,14 @@ class RangeField extends FormField
      */
     public function field($properties = array())
     {
+        Requirements::set_force_js_to_bottom(true);
+
         $this->setupData();
 
-        $field = parent::Field($properties);
-
-
         /** @todo find a way to get this a bit nicer. It's the only way to get it in without breaking on submit */
-        Requirements::insertHeadTags("<script type='text/javascript'>
-        var $this->name = " . Convert::array2json($this->getData()) . '</script>');
+        $properties['JSConfig'] = "var $this->name = " . Convert::array2json($this->getData());
+
+        $field = parent::Field($properties);
 
         return $field;
     }
