@@ -111,7 +111,7 @@ class RangeField extends FormField
         $this->setupData();
 
         /** @todo find a way to get this a bit nicer. It's the only way to get it in without breaking on submit */
-        $properties['JSConfig'] = "var $this->name = " . Convert::array2json($this->getData());
+        $properties['JSConfig'] = Convert::array2json($this->getData());
 
         $field = parent::Field($properties);
 

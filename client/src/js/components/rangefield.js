@@ -35,7 +35,7 @@ const updateElementValue = (settings, fieldName, value) => {
 const mountRangeField = (rangefield) => {
   const fieldName = rangefield.getAttribute(SETTINGS_ATTR);
   const input = fieldWithName(fieldName);
-  const settings = window[fieldName];
+  var settings = JSON.parse(rangefield.dataset.config);
 
   settings.start = valueToArray(settings.start);
 
