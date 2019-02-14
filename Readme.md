@@ -72,23 +72,23 @@ Limited formatting can be applied to the value via the `setUnit()`, `setDecimalP
 
 # Options
 
-| Option       | Default | Method            | Usage                                                   |
-| ------------ | ------- | ----------------- | ------------------------------------------------------- |
-| Snap         | false   | setSnap()         | Set snapping to points                                  |
-| Data         | []      | setData()         | Completely override the generated data                  |
-| Max          | 0       | setMax()          | Change the maximum value\*                              |
-| Min          | 100     | setMin()          | Change the minimum value\*                              |
-| Density      | 5       | setDensity()      | Set the density of the Pips                             |
-| Range        | []      | setRange()        | Set the range\*                                         |
-| Start        | [0]     | setStart()        | Set the default value\*                                 |
-| Step         | null    | setStep()         | Set the step size                                       |
-| ShowPips     | true    | setShowPips()     | Show pips                                               |
-| Snap         | false   | setSnap()         | Snap to the range-set values instead of fluent          |
-| Unit         | ''      | setUnit()         | append a unit to the output value                       |
-| DecimalPlace | 2       | setDecimalPlace() | format the number of decimal places in the output value |
-| Format       | '', 2   | setFormat()       | a short cut to set Unit and Decimal places              |
+| Option        | Default   | Method              | Usage                                                   |
+| ------------- | --------- | ------------------- | ------------------------------------------------------- |
+| Snap          | `false`   | `setSnap()`         | Set snapping to points                                  |
+| Data          | `[]`      | `setData()`         | Override the generated data                             |
+| Max           | `0`       | `setMax()`          | Change the maximum value⍟                               |
+| Min           | `100`     | `setMin()`          | Change the minimum value⍟                               |
+| Density       | `5`       | `setDensity()`      | Set the density of the pips                             |
+| Range         | `[]`      | `setRange()`        | Set the range values⍟                                   |
+| Start         | `[0]`     | `setStart()`        | Set the default value⍟                                  |
+| Step          | `null`    | `setStep()`         | Set the step size                                       |
+| Show Pips     | `true`    | `setShowPips()`     | Show or hide the pips                                   |
+| Snap          | `false`   | `setSnap()`         | Snap to the range-set values instead of fluid           |
+| Unit          | `''`      | `setUnit()`         | Append a unit to the output value                       |
+| Decimal Place | `2`       | `setDecimalPlace()` | Format the number of decimal places in the output value |
+| Format        | `''`, `2` | `setFormat()`       | A shortcut for setting both units and decimal places    |
 
-\*: These items can be set in the construct/create method
+⍟ These items can be set in the construct/create method
 
 # Known issues
 
