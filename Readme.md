@@ -8,7 +8,7 @@
 
 Play with ranges in your forms in SilverStripe.
 
-![Demo animation](demo.gif)
+![Demo animation](https://github.com/Firesphere/silverstripe-rangefield/raw/21fe0d3e5d2cfc4cc94183aaea594e39ba49c962/demo.gif)
 
 # Installation
 
@@ -56,7 +56,7 @@ RangeField::create(
       '25%' => 25,
       '50%' => 50,
       '75%' => 75,
-      'max' => 100,  // this will override $max
+      'max' => 100, // this will override $max
    ],
    $value = 33
 )
