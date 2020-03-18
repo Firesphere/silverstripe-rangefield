@@ -90,6 +90,30 @@ Limited formatting can be applied to the value via the `setUnit()`, `setDecimalP
 
 ⍟ These items can be set in the construct/create method
 
+# Using the field in the frontend (= public site)
+If you need to use this field not only in the admin section, but in the frontend, you need to define a couple of CSS and JavaScript requirements in your `PageController` class:
+
+app/src/PageController.php:
+```php
+class PageController extends ContentController
+{
+	
+	protected function init()
+	{
+		parent::init();
+		// You can include any CSS or JS required by your project here.
+		// See: https://docs.silverstripe.org/en/developer_guides/templates/requirements/
+		
+		// RangeField
+		Requirements::css('firesphere/rangefield:client/dist/main.css');
+		Requirements::javascript('firesphere/rangefield:client/dist/main.js');
+		
+	}
+}      
+```
+
+If you are only using this module in the admin section, you don't need to do this because those requirements are automatically defined for the admin section.
+
 # Known issues
 
 - Multiple start values seem not to work properly
