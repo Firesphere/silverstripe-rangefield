@@ -126,6 +126,8 @@ class RangeField extends FormField
     {
         $this->setUnit($unit);
         $this->setdecimalPlaces($decimalPlaces);
+
+        return $this;
     }
 
 
@@ -177,6 +179,8 @@ class RangeField extends FormField
     public function setStart($start)
     {
         $this->start = (array)$start;
+
+        return $this;
     }
 
     /**
@@ -193,6 +197,8 @@ class RangeField extends FormField
     public function setMin($min)
     {
         $this->min = $min;
+
+        return $this;
     }
 
     /**
@@ -209,6 +215,8 @@ class RangeField extends FormField
     public function setMax($max)
     {
         $this->max = $max;
+
+        return $this;
     }
 
     /**
@@ -225,6 +233,8 @@ class RangeField extends FormField
     public function setRange($range)
     {
         $this->range = $range;
+
+        return $this;
     }
 
     /**
@@ -241,6 +251,8 @@ class RangeField extends FormField
     public function setSnap($snap)
     {
         $this->snap = $snap;
+
+        return $this;
     }
 
     /**
@@ -257,6 +269,8 @@ class RangeField extends FormField
     public function setData($data)
     {
         $this->data = $data;
+
+        return $this;
     }
 
     /**
@@ -273,6 +287,8 @@ class RangeField extends FormField
     public function setDensity($density)
     {
         $this->density = $density;
+
+        return $this;
     }
 
     /**
@@ -289,6 +305,8 @@ class RangeField extends FormField
     public function setShowPips($showPips)
     {
         $this->showPips = $showPips;
+
+        return $this;
     }
 
     /**
@@ -305,6 +323,8 @@ class RangeField extends FormField
     public function setStep($step)
     {
         $this->step = $step;
+
+        return $this;
     }
 
     /**
@@ -321,6 +341,8 @@ class RangeField extends FormField
     public function setUnit($unit)
     {
         $this->unit = $unit;
+
+        return $this;
     }
 
     /**
@@ -337,5 +359,7 @@ class RangeField extends FormField
     public function setDecimalPlaces($decimalPlaces)
     {
         $this->decimalPlaces = $decimalPlaces;
+
+        return $this;
     }
 }
