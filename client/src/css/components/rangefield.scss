@@ -1,26 +1,43 @@
 .range {
   display: flex;
   align-items: center;
+  flex-flow: row wrap;
+  gap: 1rem;
 
   &.field {
     min-height: 7.5rem;
+
+    &:after {
+      flex-shrink: 0;
+    }
+
+    .form__field-holder {
+      flex-grow: 1;
+    }
   }
 
   &__field {
     flex-grow: 1;
+    min-width: 280px;
   }
 
   &__display {
-    border-left: 1px solid #DBE0E9;
     font-size: 1.25rem;
-    margin: 0 0 -1rem 2.5rem;
-    padding: 1.5rem 0 0 2rem;
     text-align: justify;
+    width: 100%;
+    padding-top: 1.5rem;
 
-    &::after {
-      content: "";
-      display: inline-block;
-      width: 100%;
+    @media all and (min-width: 600px) {
+      border-left: 1px solid #DBE0E9;
+      margin: 0 0 -1rem 2.5rem;
+      padding: 1.5rem 0 0 2rem;
+      width: auto;
+
+      &::after {
+        content: "";
+        display: inline-block;
+        width: 100%;
+      }
     }
   }
 }
